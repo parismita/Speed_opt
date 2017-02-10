@@ -6,7 +6,7 @@ data(RLGH)
 #diss is computed distance matrix of diatomic species relative abundance 
 diss <- dist(sqrt(RLGH$spec/100))
 
-#chclust function for Constrained hierarchical clustering method coniss
+#chclust function for Constrained hierarchical clustering method
 clust <- chclust(diss)
 #plotting variances of ordination axes/components and overlaying broken stick distributions
 bstick(clust, 19)
