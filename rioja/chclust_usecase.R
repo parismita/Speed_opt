@@ -6,21 +6,27 @@ data <- read.table("/home/parismita/dissimilarity.txt")
 n<-as.numeric(unlist(data))
 #converting to dissimilarity matrix
 dmat<-matrix(c(n),nrow = 77,ncol = 77)
-View(dmat)
+#View(dmat)
 
 library(rioja)
+library(cluster)
 
-#diss is computed distance matrix of dissimilarity matrix 
-diss <- dist(sqrt(dmat/100), method = "euclidean" )
-#chclust function for Constrained hierarchical clustering method coniss
+#as it is not euclidian dissimilarity matrix we have to find distance matrix by other methods
+
+#case 1
+#diss is computed distance matrix of dissimilarity matrix power of p >1
+diss <- dist(dmat, method='canberra')
+#diss <- dist(dmat, method='minkowski',p = 1)
+#chclust function for Constrained hierarchical clustering method
 clust <- chclust(diss)
+
 #plotting variances of ordination axes/components and overlaying broken stick distributions
-bstick(clust, 15)
-bstick(clust)
-# Basic diagram
-plot(clust, hang=-1)
+bstick(clust, ng = 10)
+plot(clust, hang=-1 )
 
+hc = hclust(d = diss, method = 'ward.D')
+y_hc = cutree(hc,6)
+diss=as.matrix(diss)
 
-# Conslink for comparison
-clust <- chclust(diss, method = "conslink")
-plot(clust, hang=-1)
+clusplot(diss, y_hc, lines = 0, color = TRUE)
+
