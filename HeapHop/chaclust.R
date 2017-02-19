@@ -1,5 +1,5 @@
 library("adjclust")
-library(timeSeries)
+library("Matrix")
 
 chaclust<-function(s,h){
   p<- ncol(s)
