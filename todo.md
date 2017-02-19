@@ -7,15 +7,19 @@
 3) easy.Rmd and its pdf
 
 4) medium test
-* make similarity matrix
-* check if similarity matrix or dissimilarity
-* if dissmin call sim function
-* return (sim mat,boolean)
-* heaphop.R calc clusters part
+* similarity matrix comming negetive....try different kernel
+* currently using gausian, check linear and polynomial
 * comp.R comparision b/w heaphop and rioja
+* heaphop is not hclust object check how to make hclust object from heaphop soln
+
 
 5) hard test
 
 6) link of files: 
 * rioja folder files are independent of each otherI
-* heaphop : similarity->heaphop->comp
+* heaphop : source("chaclust") in similarity.R
+
+#Done
+1) easy code + cluster
+
+2) medium function + similarity algo
