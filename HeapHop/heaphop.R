@@ -1,6 +1,6 @@
 library("adjclust")
-library(timeSeries)
 library("snpStats")
+
 data("ld.example", package="snpStats")
 p <- ncol(ceph.1mb)
 nSamples <- nrow(ceph.1mb)
