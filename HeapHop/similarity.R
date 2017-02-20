@@ -33,6 +33,7 @@ p<-150
 h <- 5
 
 # extracting diagonal band
+# as adjClustBand_heap accepts band except the diagonal hence removing the diagonal
 low <- 1
 high <- h
 delta <- col(s) - row(s)
@@ -40,11 +41,10 @@ s[delta < low | delta > high] <- 0
 View(s)
 image(s)
 
+
+#convert to dcgMatrix class object
 A <- as(s, "sparseMatrix")
 image(A)
-
-
-
 ## some reshaping
 #diag(A) <- 1
 x <- t(A)@x
@@ -54,7 +54,6 @@ plot(fit)
 
 resP <- adjclust:::HeapHop(x, p, h, 1)
 View(resP)
-plot(resP[1,],resP[2,])
 
 #comparision
 diss <- dist(K)
