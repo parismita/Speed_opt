@@ -7,10 +7,10 @@
 3) easy.Rmd and its pdf
 
 4) medium test
-* similarity matrix comming negetive....try different kernel
-* currently using gausian, check linear and polynomial
 * comp.R comparision b/w heaphop and rioja
 * heaphop is not hclust object check how to make hclust object from heaphop soln
+* similarity.Rmd + pdf
+* comparision.Rmd + pdf
 
 
 5) hard test
