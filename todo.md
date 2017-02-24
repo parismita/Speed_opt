@@ -14,6 +14,11 @@
 
 
 5) hard test
+* function description html page + pdf
+* single linkage function:
+* introduce parallal computing (PRAM) such that time const O(n) or O(logn)
+* try Chazelle-MST comp speed O(n) or inverse Ackermann Type Complexity
+* easy Kruskal's algorithm
 
 6) link of files: 
 * rioja folder files are independent of each otherI
