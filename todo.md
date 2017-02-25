@@ -1,30 +1,23 @@
 #todo
 
-1) cluster validation on easy test
+1) cluster validation on easy test ----X
 
-2) analysis on easy test
+2) analysis on easy test easy.Rmd and its pdf
 
-3) easy.Rmd and its pdf
-
-4) medium test
+3) medium test
 * comp.R comparision b/w heaphop and rioja
 * heaphop is not hclust object check how to make hclust object from heaphop soln
 * similarity.Rmd + pdf
 * comparision.Rmd + pdf
 
 
-5) hard test
+4) hard test
 * function description html page + pdf
 * single linkage function:
-* introduce parallal computing (PRAM) such that time const O(n) or O(logn)
-* try Chazelle-MST comp speed O(n) or inverse Ackermann Type Complexity
-* easy Kruskal's algorithm
+* introduce parallal computing (PRAM) such that time const O(n) or O(logn) on Kruskal's algo
+* try Chazelle-MST comp speed O(n) or inverse Ackermann Type Complexity (possibly PRAM not possible here)
 
-6) link of files: 
+5) link of files: 
 * rioja folder files are independent of each otherI
 * heaphop : source("chaclust") in similarity.R
-
-#Done
-1) easy code + cluster
-
-2) medium function + similarity algo
+* source("similarity.R") in comp.R
