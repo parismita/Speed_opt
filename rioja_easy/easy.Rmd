@@ -1,0 +1,46 @@
+---
+title: "Rioja Test Cases"
+author: "Parismita Das"
+date: "26 February 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Using Implemented Method
+
+The inbuilt dataset RLGH(Diatom stratigraphic data) is used for showing clustering via constrained HAC method which is done by chclust function of Rioja Package.
+In the code 
+```
+data(RLGH)
+```
+
+The distance Matrix is calculated by dist function of R, by default it calculates Euclidean Distance Metric
+```
+#diss is computed distance matrix of diatomic species relative abundance 
+diss <- dist(sqrt(RLGH$spec/100))
+```
+
+Using chclust function for Constrained hierarchical clustering by coniss method, and comparing the dispersion of a hierarchical classification to that obtained from a broken stick model using bstick
+```
+clust <- chclust(diss)
+```
+bstick function compares the dispersion of a hierarchical classification to that obtained from a broken stick model. Hence plotting variances of ordination axes/components and overlaying broken stick distributions
+
+```{r clustering, echo=FALSE}
+source("implemented_method.R")
+
+```
+
+Plotting the dendogram diagram which we obtain after clustering, according to its distance.
+
+```{r cluster, echo=FALSE}
+source("cluster.R")
+
+```
+
+Showing the Clusters we get using using the function hclust.
+
+Hence this shows the Hierarchical clustering using the Rioja Package
