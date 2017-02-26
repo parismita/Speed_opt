@@ -43,4 +43,43 @@ source("cluster.R")
 
 Showing the Clusters we get using using the function hclust.
 
-Hence this shows the Hierarchical clustering using the Rioja Package
+Hence this shows the Hierarchical clustering using the Example given in the Rioja Package
+
+## Using Given Dataset
+
+This is a example to obtain constrained HAC using dataset extracted from dissimilarity.txt
+We start with conveting the dataset given in format of .txt to Matrix form 
+```
+#reading dataset from txt file
+data <- read.table("/home/parismita/dissimilarity.txt")
+#converting to numeric list
+n<-as.numeric(unlist(data))
+#converting to dissimilarity matrix
+dmat<-matrix(c(n),nrow = 77,ncol = 77)
+```
+As it is not euclidian dissimilarity matrix we have to find distance matrix by other methods.As There is no Ward's Method inbuilt in dist function, Hence after trying out various Methods, The Canberra Method of calculating distance Matrix Works Best, The Canberra Method is a special case of Manhattan Method.
+```
+#diss is computed distance matrix of dissimilarity matrix power of p >1
+diss <- dist(dmat, method='canberra')
+#chclust function for Constrained hierarchical clustering method
+clust <- chclust(diss)
+```
+
+Plotting the Bstick representation of the data
+
+```{r bstick, echo=FALSE}
+source("chclust_usecase.R")
+
+```
+
+Plotting the dendogram diagram which we obtain after clustering, according to its distance.
+
+```{r clusters, echo=FALSE}
+source("cluster1.R")
+
+```
+
+Showing the Clusters we get using using the function hclust, Using Ward's Method.
+
+Hence this shows the Hierarchical clustering using our own data.
+
