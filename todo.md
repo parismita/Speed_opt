@@ -15,7 +15,7 @@
 * introduce parallal computing (PRAM) such that time const O(n) or O(logn) on Kruskal's algo
 * try Chazelle-MST comp speed O(n) or inverse Ackermann Type Complexity (possibly PRAM not possible here)
 
-4) link of files: 
+# link of files: 
 * rioja folder files are independent of each otherI
 * heaphop : source("chaclust") in similarity.R
 * source("similarity.R") in comp.R
