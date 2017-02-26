@@ -1,7 +1,3 @@
-#todo
-
-1) analysis on easy test easy.Rmd and its pdf
-
 2) medium test
 * comp.R comparision b/w heaphop and rioja
 * heaphop is not hclust object check how to make hclust object from heaphop soln
