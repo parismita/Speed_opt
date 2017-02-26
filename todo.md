@@ -11,7 +11,6 @@
 
 3) hard test
 * function description html page + pdf
-* single linkage function:
 * introduce parallal computing (PRAM) such that time const O(n) or O(logn) on Kruskal's algo
 * try Chazelle-MST comp speed O(n) or inverse Ackermann Type Complexity (possibly PRAM not possible here)
 
