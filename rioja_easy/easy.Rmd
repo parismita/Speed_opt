@@ -1,5 +1,5 @@
 ---
-title: "Rioja Test Cases"
+title: "Rioja Use Cases"
 author: "Parismita Das"
 date: "26 February 2017"
 output: html_document
