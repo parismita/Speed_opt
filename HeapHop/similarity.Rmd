@@ -61,18 +61,12 @@ s[delta < low | delta > high] <- 0
 knitr::include_graphics('~/cHAC/diagonal.png')
 ```
 
-Creating Dendrograms and cluster plot, clustering via hclust
+Creating Dendrograms and cluster plot, clustering via adjClustBand
 ```
-diss <- dist(K)
-hc = hclust(d = diss, method = 'ward.D')
-y_hc = cutree(hc,6)
-plot(hc)
-diss=as.matrix(diss)
-clusplot(diss, y_hc, lines = 0, color = TRUE)
+fit <- adjclust:::adjClustBand_heap(x, p, h, blMin=1)
+plot(fit)
 ```
 ```{r echo=FALSE, out.width='100%'}
 knitr::include_graphics('~/cHAC/ward.png')
 knitr::include_graphics('~/cHAC/mat.png')
 ```
-
-We can see that only 3 major clusters are formed
