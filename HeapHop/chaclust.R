@@ -1,3 +1,4 @@
+# this is the function to take similarity matrix as input and give HeapHop clustered object as output
 library("adjclust")
 library("Matrix")
 
