@@ -74,4 +74,5 @@ clusplot(diss, y_hc, lines = 0, color = TRUE)
 knitr::include_graphics('~/cHAC/ward.png')
 knitr::include_graphics('~/cHAC/mat.png')
 ```
+
 We can see that only 3 major clusters are formed
