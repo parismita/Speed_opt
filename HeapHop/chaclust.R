@@ -11,7 +11,7 @@ chaclust<-function(s,h){
   
   #create sparse mmatrix of dgCMatric class
   A <- as(s, "sparseMatrix")
-  x <- t(A)@x
+  x <- A@x
   
   resP <- adjclust:::HeapHop(x, p, h, 1)
   return(resP)
