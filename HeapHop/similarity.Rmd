@@ -1,0 +1,77 @@
+---
+title: "Clustering a Similarity Matrix"
+author: "Parismita Das"
+date: "5 March 2017"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Creating Similarity Matrix
+
+We are given with a symmetrical Dissimilarity matrix, and as all elements are positive in the given matrix, the kernel SOM and relational SOM are equivalent. Hence using the equation:
+```{r echo=FALSE, out.width='100%'}
+knitr::include_graphics('~/cHAC/img.png')
+```
+
+
+The algorithm to calculate the Similarity Matrix
+```
+# algo to calculate similarity matrix s from the equation given where 
+#K is the dissimilatriy matrix delta(xi,xj)
+#Dkk is sum[k,k':1 to n](delta(xk,xk')^2), Dij is delta(xi,xj)^2,
+#Dik and Dkj is sum[k:1 to n](delta(xi,xk)^2) and sum[k:1 to n](delta(xk,xj)^2) resp
+n <- 150
+Dkk <- sum(K^2)
+s <- c()
+for (i in 1:n) {
+  Dik <- sum(K[i,]^2)
+  for (j in 1:n) {
+    Dkj <- sum(K[,j]^2)
+    Dij <- K[i,j]^2
+    #the equation
+    sij <- -0.5*(Dij - 1/n*(Dik+Dkj) + 1/n^2*Dkk)
+    s <- c(s,sij)
+    }
+}
+
+# the similarity matrix
+s <- matrix(s , nrow = 150,ncol = 150)
+
+```
+
+We get the Similarity Matrix Image as:
+```{r echo=FALSE, out.width='100%'}
+knitr::include_graphics('~/cHAC/diag.png')
+```
+
+Now Extracting the diagonal band of width 5 that is to be used for clustering, using the function HeapHop
+
+```
+# extracting diagonal band
+low <- 1
+high <- h
+delta <- col(s) - row(s)
+s[delta < low | delta > high] <- 0
+```
+
+```{r echo=FALSE, out.width='100%'}
+knitr::include_graphics('~/cHAC/diagonal.png')
+```
+
+Creating Dendrograms and cluster plot, clustering via hclust
+```
+diss <- dist(K)
+hc = hclust(d = diss, method = 'ward.D')
+y_hc = cutree(hc,6)
+plot(hc)
+diss=as.matrix(diss)
+clusplot(diss, y_hc, lines = 0, color = TRUE)
+```
+```{r echo=FALSE, out.width='100%'}
+knitr::include_graphics('~/cHAC/ward.png')
+knitr::include_graphics('~/cHAC/mat.png')
+```
+
