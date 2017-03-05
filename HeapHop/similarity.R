@@ -41,15 +41,3 @@ resP <- chaclust(s,h)
 View(resP)
 head(t(resP))
 
-
-
-#comparision
-diss <- dist(K)
-hc = hclust(d = diss, method = 'ward.D')
-View(head(cbind(hc$merge, hc$height)))
-
-y_hc = cutree(hc,6)
-#plot(hc)
-diss=as.matrix(diss)
-#clusplot(diss, y_hc, lines = 0, color = TRUE)
-#clusplot(s, y_hc, lines = 0, color = TRUE)
