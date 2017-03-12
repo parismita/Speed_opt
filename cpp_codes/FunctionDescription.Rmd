@@ -1,0 +1,92 @@
+---
+title: "Function Descriptions"
+author: "Parismita Das"
+date: "24 February 2017"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## General Description for HeapHop Implementation
+
+The PseudoMatrix Class object is the Matrix which has the Index and Data as attributes. The index is calculated as FusionClass object and Data as ColArray object. GeneralFunctions prints the Matrix. This Matrix object is created in ClassesHeap where actual Heap formation and and Output Heap calculation is done, which is then merged in the file HeapHop2 for final Heap.  
+
+## Function Description 
+
+1) GeneralFunctions.cpp
+  * MyPrint : It prints the given Matrix
+  
+2) ColsArray.cpp
+  * Restructure : For PseudoMatrix object, It stores the column index and data content of the Matrix.
+  * CheckMe : Checks if the Matrix element exist on a particular memory
+  
+  * Initialize : Initializes matrix M and points next memory address of M via ColIndex and Data
+  
+  * Set : There are two set functions using concept of function overloading.
+    In ``` Set(int Col, double Value, int ForceIndex, bool Assumption)``` The Col and Value are stored in the forced index and ```Set(int Col, double Value)``` is called. In ```Set(int Col, double Value)``` New memory is allocated to the given input column and value is set to data.
+  
+  * Value : In ```Value(int Col, int SupposedPlace)``` The column index is checked if it is same as SupposedPlace index and Data is returned. In ```Value(int Col)``` The Data in the Col index is returned.
+  
+3) FusionedClasses.cpp
+  * Initialize : initialises current index, previous index and next index
+  
+  * InitializeFusionCost : initialises Fusion Cost
+  
+  * MyValue : return value for current index
+  
+  * Swallow : Deletes current index
+  
+  * ComputeMyFusionCost : calculate fusion cost
+  
+  * Exist : checks if My Index is euqal to Available Index, and return bool
+  
+  * MyCardinal : return ``` NbFusions + 1 ```
+
+4) PseudoMatrix.cpp
+  * Initialize : initialises pseudomatrix and index ```MyClasses```
+  
+  * Set : sets data according to index given, calls Set function of colsArray.cpp
+  
+  * Value : sets index according to index given, calls Value function of colsArray.cpp
+  
+  * Fusion : 
+  
+  * DisplayMatrixA : display matrix
+
+5) ClassesHeap.cpp
+  * CheckMe : checks validity of left right element of heap
+  
+  * Initialize : initalises the heap, output, make clusters of given number, 
+  
+  * Swap : swap two elements
+  
+  * RebalanceToDown : checks the lower right to larger and swap the elements to maintain min heap property
+  
+  * RebalanceToUp : checks upper element to be smaller and swap to maintain heap property
+  
+  * AddNode : adds node to heap and rebalances 
+  
+  * MakeAFusion : make clusters of given number by merging current clusters
+  
+  * FullRebalance : rebalances to down at the beggining and when rebalance to up not possible
+  
+
+## The Functions Dependency Graph
+
+```{r echo=FALSE, out.width='100%'}
+knitr::include_graphics('~/cHAC/classesHeap.png')
+```
+
+```{r echo=FALSE, out.width='100%'}
+knitr::include_graphics('~/cHAC/PseudoMatrix.png')
+```
+
+```{r echo=FALSE, out.width='100%'}
+knitr::include_graphics('~/cHAC/FusionedClasses.png')
+```
+
+```{r echo=FALSE, out.width='100%'}
+knitr::include_graphics('~/cHAC/ColsArray.png')
+```
