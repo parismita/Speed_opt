@@ -7,8 +7,7 @@
 
 
 2) hard test
-* function description html page + pdf
-* introduce parallal computing (PRAM) such that time const O(n) or O(logn) on Kruskal's algo
+* introduce parallal computing (PRAM) such that time const O(n) or O(logn) on Prim's algo
 
 
 # Target After Completion of all tests:
