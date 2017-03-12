@@ -14,7 +14,7 @@ chaclust<-function(s,h,f = 0){
   #create sparse mmatrix of dgCMatric class
   A <- as(s, "sparseMatrix")
   x <- A@x
-  x <- matrix(x,nrow = p, ncol = h-2)
+  
   if(f==1){
     fit <- adjclust:::adjClustBand_heap(x,p,h,blMin = 1)
     return(fit)
