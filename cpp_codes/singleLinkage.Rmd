@@ -1,0 +1,74 @@
+---
+title: "Single Linkage Clustering"
+author: "Parismita Das"
+date: "15 March 2017"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Single Linkage Criterion
+In Single Linlage Criterion of Agglomerative Hierarchical clustering, The distance between the elements of each cluster is minimised. As the Naive single linkage clustering has a worst case time complexity of O(N^3). It becomes useless for large data which are frequency used in the field of bioinformatics
+
+Hence Nearest-neighbor chain algorithm is being used here
+
+## Nearest-neighbor chain algorithm
+In the theory of cluster analysis, the nearest-neighbor chain algorithm is an algorithm that can speed up several methods for agglomerative hierarchical clustering. And Single Linkage Clustering is one of them.
+
+## The Algorithm
+* Initialize the set of active clusters to consist of n one-point clusters, one for each input point.
+
+* Let S be a stack data structure, initially empty, the elements of which will be active clusters.
+
+* While there is more than one cluster in the set of clusters:
+
+* If S is empty, choose an active cluster arbitrarily and push it onto S.
+
+* Let C be the active cluster on the top of S. Compute the distances from C to all other clusters, and let D be the nearest other cluster.
+
+* If D is already in S, it must be the immediate predecessor of C. Pop both clusters from S and merge them.
+
+* Otherwise, if D is not already in S, push it onto S.
+
+Here The cost function used is the minimum distance between the nearest cluster element.
+
+```{r echo=FALSE, out.width='100%'}
+knitr::include_graphics('~/cHAC/point.png')
+```
+
+As single linkage criterion can be implemented by using the Lance and William Algorithm
+```{r echo=FALSE, out.width='100%'}
+knitr::include_graphics('~/cHAC/william.png')
+```
+
+```{r echo=FALSE, out.width='100%'}
+knitr::include_graphics('~/cHAC/lance.png')
+```
+
+Hence by tuning the cost function of FusionedClasses.cpp
+
+```
+FusionCost = 0.5 * (MyValue()  - abs(MyValue() - MyMatrix->Value(NextAvailableIndex,
+    NextAvailableIndex)) + MyMatrix->Value(NextAvailableIndex, NextAvailableIndex));
+```
+
+## The Output
+We get Clusters as:
+
+```{r echo=FALSE, out.width='100%'}
+#knitr::include_graphics('~/cHAC/.png')
+```
+
+
+
+
+References:
+https://users.cs.duke.edu/~edels/Papers/1984-J-05-HierarchicalClustering.pdf
+
+http://www.lx.it.pt/~afred/tutorials/B_Clustering_Algorithms.pdf
+
+http://orion.lcg.ufrj.br/Dr.Dobbs/books/book5/chap16.htm
+
+https://en.wikipedia.org/wiki/Nearest-neighbor_chain_algorithm
