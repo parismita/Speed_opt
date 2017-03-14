@@ -11,7 +11,9 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## General Description for HeapHop Implementation
 
-The PseudoMatrix Class object is the Matrix which has the Index and Data as attributes. The index is calculated as FusionClass object and Data as ColArray object. GeneralFunctions prints the Matrix. This Matrix object is created in ClassesHeap where actual Heap formation and and Output Heap calculation is done, which is then merged in the file HeapHop2 for final Heap.  
+The HeapHop function takes in the Distance Matrix diagonal elements along with its width and no of rows as input. This input is converted to matrix in PseudoMatrixRcpp.cpp file.
+
+The PseudoMatrix Class object has the Cluster Classes information, Index and Data as attributes. FusionnedClass functions calculate informations such as fusioncost, available index, No of clusters and ColArray calculates the value in Data. GeneralFunctions class object prints the Matrix. ClassesHeap is where actual Heap formation and and Output Heap calculation is done, which is then merged in the file HeapHop2 for final Output.  
 
 ## Function Description 
 
@@ -32,26 +34,26 @@ The PseudoMatrix Class object is the Matrix which has the Index and Data as attr
 3) FusionedClasses.cpp
   * Initialize : initialises current index, previous index and next index
   
-  * InitializeFusionCost : initialises Fusion Cost
+  * InitializeFusionCost : initialises Fusion Cost depending on the Adjacent index's Value
   
   * MyValue : return value for current index
   
-  * Swallow : Deletes current index
+  * Swallow : Deletes current index, sets next index as current, increase the number of fusionned classes by 1. It basically means one cluster is being made.
   
-  * ComputeMyFusionCost : calculate fusion cost
+  * ComputeMyFusionCost : calculate fusion cost depending on the Adjacent index's Value using the Lance and William Algorithm.
   
   * Exist : checks if My Index is euqal to Available Index, and return bool
   
-  * MyCardinal : return ``` NbFusions + 1 ```
+  * MyCardinal : return Number of fusion classes : ``` NbFusions + 1 ```, ie the parameter for ward's criterion.
 
 4) PseudoMatrix.cpp
-  * Initialize : initialises pseudomatrix and index ```MyClasses```
+  * Initialize : Takes pseudomatrix object as attribute and initialises cluster classes, FusionCost and the Matrix Data.
   
   * Set : sets data according to index given, calls Set function of colsArray.cpp
   
   * Value : sets index according to index given, calls Value function of colsArray.cpp
   
-  * Fusion : 
+  * Fusion : Takes next index, merges the index according to its cost.
   
   * DisplayMatrixA : display matrix
 
