@@ -1,13 +1,14 @@
 # todo:
 1) medium test
-* adjClustBand_heap is hclust hence compare this with rioja
-* merge and gain data Heaphop and adjClustBand_heap compare
-* rioja gain data not available compare merge only
+* HeapHop data to hclust object by:
+
+       class(resP) <- "hclust"        # make it an hclust object
+       plot(resP)                     # look at the result   
+       #convert to a dendrogram object if needed
+       ad <- as.dendrogram(resP)
 * comparision.Rmd + pdf
 
-
-2) hard test
-* introduce parallal computing (PRAM) such that time const O(n) or O(logn) on Prim's algo
+2) blog stating all whats done
 
 
 # Target After Completion of all tests:
