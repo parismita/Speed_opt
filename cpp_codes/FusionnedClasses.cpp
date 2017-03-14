@@ -63,7 +63,8 @@ void FusionnedClasses::InitializeFusionCost()
     {
       //as ai = aj = 0.5 and beta = 0 and gamma = -0.5
       double Coefficient = 0.5;
-      FusionCost = Coefficient * (MyMatrix->Value(MyIndex, MyIndex) +  MyMatrix->Value(MyIndex + 1, MyIndex + 1) - abs(MyMatrix->Value(MyIndex, MyIndex) -  MyMatrix->Value(MyIndex + 1, MyIndex + 1)));
+      FusionCost = Coefficient * (MyMatrix->Value(MyIndex, MyIndex) +  MyMatrix->Value(MyIndex + 1, MyIndex + 1)
+                                  - abs(MyMatrix->Value(MyIndex, MyIndex) -  MyMatrix->Value(MyIndex + 1, MyIndex + 1)));
     }
 }
 
@@ -89,7 +90,9 @@ void FusionnedClasses::Swallow(int &NumFusionnedClass)
   NumFusionnedClass++;
 }
 
-
+//using Nearest-neighbor chain algorithm, calculation the fusion cost by Lance–Williams algorithms
+// the distance between two clusters is decided by the nearest point distances
+//applying single linkage criterion
 void FusionnedClasses::ComputeMyFusionCost()
 {
   assert(MyIndex == MyAvailableIndex);
@@ -99,7 +102,8 @@ void FusionnedClasses::ComputeMyFusionCost()
       return;
     }
   double Coefficient = 0.5;
-  FusionCost = Coefficient * (MyValue()  - abs(MyValue() - MyMatrix->Value(NextAvailableIndex, NextAvailableIndex)) + MyMatrix->Value(NextAvailableIndex, NextAvailableIndex));
+  FusionCost = Coefficient * (MyValue()  + MyMatrix->Value(NextAvailableIndex, NextAvailableIndex)
+                              - abs(MyValue() - MyMatrix->Value(NextAvailableIndex, NextAvailableIndex)));
 }
 
 bool FusionnedClasses::Exist()
