@@ -17,7 +17,7 @@ library(cluster)
 #diss is computed distance matrix of dissimilarity matrix power of p >1
 diss <- dist(dmat, method='canberra')
 #diss <- dist(dmat, method='minkowski',p = 1)
-#chclust function for Constrained hierarchical clustering method
+#chclust function for Constrained hierarchical clustering method, using coniss method
 clust <- chclust(diss)
 
 #plotting variances of ordination axes/components and overlaying broken stick distributions
