@@ -1,0 +1,76 @@
+---
+title: "Comparision Results"
+author: "Parismita Das"
+date: "5 March 2017"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Comparision between rioja and adjClustBand_heap
+
+From the Merge Data Table and Dendrogram of rioja and adjClustBand_heap
+
+Rioja Data Table
+
+```{r echo=FALSE, out.width='100%'}
+knitr::include_graphics('~/cHAC/rioja_mergedata.png')
+```
+
+From the table we can say that the (30,31) merges at height 0.31, (96,97) at 0.6 and so on.
+
+adjClustBand_heap Data Table
+
+```{r echo=FALSE, out.width='100%'}
+knitr::include_graphics('~/cHAC/adjClustBand_heap.png')
+```
+
+From the table we can say that the (118,119) merges at height 0.31, (131,132) at 0.6 and so on.
+
+In both the functions we use Ward's method still the cluster output is different because the Distance metric in adjClustBand_heap is calculated considering a section of rectangle of the matrix. And that is minimised.
+
+But in rioja Directly Euclidian distance of the clusters is calculated.
+
+
+
+Rioja Dendrogram
+
+```{r echo=FALSE, out.width='100%'}
+knitr::include_graphics('~/cHAC/riojaplot.png')
+```
+
+adjClustBand_heap Dendrogram for h = 1
+
+```{r echo=FALSE, out.width='100%'}
+knitr::include_graphics('~/cHAC/ward.png')
+```
+
+adjClustBand_heap Dendrogram for h = 10
+
+```{r echo=FALSE, out.width='100%'}
+knitr::include_graphics('~/cHAC/ward2.png')
+```
+
+adjClustBand_heap Dendrogram for h = 15
+
+```{r echo=FALSE, out.width='100%'}
+knitr::include_graphics('~/cHAC/ward3.png')
+```
+
+adjClustBand_heap Dendrogram for h = 25
+
+```{r echo=FALSE, out.width='100%'}
+knitr::include_graphics('~/cHAC/ward4.png')
+```
+
+adjClustBand_heap Dendrogram for h = 45
+
+```{r echo=FALSE, out.width='100%'}
+knitr::include_graphics('~/cHAC/ward5.png')
+```
+
+We can say that as the width of diagonal increases, we see a bottomup fashion of clustering.
+Hence we can say that most of the importance clustering information is found near the diagonal.
+
