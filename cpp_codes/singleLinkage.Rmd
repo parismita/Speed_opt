@@ -53,10 +53,20 @@ Hence by tuning the cost function of FusionedClasses.cpp
 FusionCost = 0.5 * (MyValue()  - abs(MyValue() - MyMatrix->Value(NextAvailableIndex,
     NextAvailableIndex)) + MyMatrix->Value(NextAvailableIndex, NextAvailableIndex));
 ```
+## The Output
+```
+h<-5
+resP <- chaclust(s,h)
+View(head(t(resP),10))
+```
+
+```{r echo=FALSE, out.width='100%'}
+knitr::include_graphics('~/cHAC/output.png')
+```
 
 --------------------------------------------------------------------------------------------
 References:
-https://users.cs.duke.edu/~edels/Papers/1984-J-05-HierarchicalClustering.pdf
-http://www.lx.it.pt/~afred/tutorials/B_Clustering_Algorithms.pdf
-http://orion.lcg.ufrj.br/Dr.Dobbs/books/book5/chap16.htm
-https://en.wikipedia.org/wiki/Nearest-neighbor_chain_algorithm
+* https://users.cs.duke.edu/~edels/Papers/1984-J-05-HierarchicalClustering.pdf
+* http://www.lx.it.pt/~afred/tutorials/B_Clustering_Algorithms.pdf
+* http://orion.lcg.ufrj.br/Dr.Dobbs/books/book5/chap16.htm
+* https://en.wikipedia.org/wiki/Nearest-neighbor_chain_algorithm
