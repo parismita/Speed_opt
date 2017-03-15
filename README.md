@@ -11,7 +11,7 @@ Function chaclust takes similarity matrix, ncol and width as input and a boolean
 The comparision is being made of rioja chclust and adjClustBand_heap functions outcomes. 
 
 The Similarity Matrix formation, the Function and comparision with rioja can be found inside folder HeapHop. 
-The pdf stating all details can be found here: [Similarity](https://github.com/parismita/gsoc-2017/blob/master/HeapHop/similarity.pdf)| [Comparision]()
+The pdf stating all details can be found here: [Similarity](https://github.com/parismita/gsoc-2017/blob/master/HeapHop/similarity.pdf)| [Comparision](https://github.com/parismita/gsoc-2017/blob/master/HeapHop/comp.pdf)
 
 ## Hard test 
 The function HeapHop in the package adjclust is modified from ward's criterion to single linkage criterion giving single linkage clustering of time complexity O(N^2)
