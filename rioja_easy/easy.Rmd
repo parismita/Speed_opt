@@ -30,14 +30,14 @@ clust <- chclust(diss)
 bstick function compares the dispersion of a hierarchical classification to that obtained from a broken stick model. Hence plotting variances of ordination axes/components and overlaying broken stick distributions
 
 ```{r clustering, echo=FALSE}
-source("implemented_method.R")
+source("~/cHAC/implemented_method.R")
 
 ```
 
 Plotting the dendogram diagram which we obtain after clustering, according to its distance.
 
 ```{r cluster, echo=FALSE}
-source("cluster.R")
+source("~/cHAC/cluster.R")
 
 ```
 
@@ -57,7 +57,7 @@ n<-as.numeric(unlist(data))
 #converting to dissimilarity matrix
 dmat<-matrix(c(n),nrow = 77,ncol = 77)
 ```
-As it is not euclidian dissimilarity matrix we have to find distance matrix by other methods.As There is no Ward's Method inbuilt in dist function, Hence after trying out various Methods, The Canberra Method of calculating distance Matrix Works Best, The Canberra Method is a special case of Manhattan Method.
+As it is not euclidian dissimilarity matrix we have to find distance matrix by other methods. After trying out various Methods, The Canberra Method of calculating distance Matrix Works Best, The Canberra Method is a special case of Manhattan Method. And Ward's clustering to obtain the dendrogram.
 ```
 #diss is computed distance matrix of dissimilarity matrix power of p >1
 diss <- dist(dmat, method='canberra')
@@ -68,18 +68,33 @@ clust <- chclust(diss)
 Plotting the Bstick representation of the data
 
 ```{r bstick, echo=FALSE}
-source("chclust_usecase.R")
+source("~/cHAC/chclust_usecase.R")
 
 ```
 
 Plotting the dendogram diagram which we obtain after clustering, according to its distance.
 
 ```{r clusters, echo=FALSE}
-source("cluster1.R")
+source("~/cHAC/cluster1.R")
 
 ```
 
 Showing the Clusters we get using using the function hclust, Using Ward's Method.
 
+Using the Single Linkage Criterion on the same data, and distance metric, We get the plot as:
+```{r clusters3, echo=FALSE}
+source("~/cHAC/cl1.R")
+
+```
+
 Hence this shows the Hierarchical clustering using our own data.
 
+## Problems with Non-Euclidian Data
+
+Non-Euclidean distances can only be approximately embedded in a Euclidean space and not accurately. And Pseudo-Euclidean (PE) embedding can be found for any symmetric dissimilarity matrix.
+
+We do not calculate Pseudo-Euclidean (PE) embedding here, instead we calculate the distacne metric by ourself and fit it in rioja inbuilt functions
+
+For ward's linkage: the data can be misleading as the varience of the clusters are calculated by euclidean method
+
+For SLINK method: The data have low varience hence cant seperate into clusters
