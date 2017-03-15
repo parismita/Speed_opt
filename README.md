@@ -18,3 +18,5 @@ The function HeapHop in the package adjclust is modified from ward's criterion t
 
 The function descriptions and the edited files are inside the folder cpp_code. 
 The pdf stating all details can be found here: [SingleLinkage](https://github.com/parismita/gsoc-2017/blob/master/cpp_codes/singleLinkage.pdf)| [FunctionDescription](https://github.com/parismita/gsoc-2017/blob/master/cpp_codes/FunctionDescription.pdf)
+
+In adjclust, the Fusionedclasses.cpp ,FusionnedClasses.h is updated : [here](https://github.com/pneuvial/adjclust/compare/master...parismita:master)
