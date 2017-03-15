@@ -12,4 +12,4 @@
 
 
 # Target After Completion of all tests:
-* try Chazelle-MST comp speed O(n) or inverse Ackermann Type Complexity (possibly PRAM not possible here)
+* try Chazelle-MST comp speed O(n) or inverse Ackermann Type Complexity
