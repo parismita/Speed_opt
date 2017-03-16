@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 The HeapHop function takes in the Distance Matrix diagonal elements along with its width and no of rows as input. This input is converted to matrix in PseudoMatrixRcpp.cpp file.
 
-The PseudoMatrix Class object has the Cluster Classes information, Index and Data as attributes. FusionnedClass functions calculate informations such as fusioncost, available index, No of clusters and ColArray calculates the value in Data. GeneralFunctions class object prints the Matrix. ClassesHeap is where actual Heap formation and and Output Heap calculation is done, which is then merged in the file HeapHop2 for final Output.  
+The PseudoMatrix Class object has the Cluster Classes information, Index and Data as attributes. FusionnedClass functions calculate informations such as fusioncost, available index, No of clusters and ColArray calculates the value in Data. GeneralFunctions class object prints the Matrix. ClassesHeap is where actual Heap formation and and Output Heap calculation is done, which is then merged in the file PseudoMatrixRcpp.cpp for final Output.  
 
 ## Function Description 
 
