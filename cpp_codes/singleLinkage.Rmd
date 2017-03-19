@@ -15,7 +15,7 @@ In Single Linlage Criterion of Agglomerative Hierarchical clustering, The distan
 Hence Nearest-neighbor chain algorithm is being used here
 
 ## Nearest-neighbor chain algorithm
-In the theory of cluster analysis, the nearest-neighbor chain algorithm is an algorithm that can speed up several methods for agglomerative hierarchical clustering. And Single Linkage Clustering is one of them.
+In the theory of cluster analysis, the nearest-neighbor chain algorithm is an algorithm that can speed up several methods for agglomerative hierarchical clustering. And Single Linkage Clustering is one of them. With this we have taken an input a band similarity matrix of size ph, and combines pre-calculation of certain partial sums of similarities with an efficient storage of the successive merges in a binary heap, hence reducing the time complexity to O(plog(p) + h)
 
 ## The Algorithm
 * Initialize the set of active clusters to consist of n one-point clusters, one for each input point.
