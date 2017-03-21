@@ -11,12 +11,11 @@ dmat<-matrix(c(n),nrow = 77,ncol = 77)
 library(rioja)
 library(cluster)
 
-#as it is not euclidian dissimilarity matrix we have to find distance matrix by other methods
-
-#diss is computed distance matrix of dissimilarity matrix power of p >1
-diss <- dist(dmat, method='canberra')
-#chclust function for Constrained hierarchical clustering method, using coniss method
-clust <- chclust(diss)
+#we are given with dissimilarity matrix with id not euclidean distance metric.
+#changing to distance class
+dmat <- as.dist(dmat)
+#chclust function for Constrained hierarchical clustering method, using consiss method
+clust <- chclust(dmat)
 
 #plotting variances of ordination axes/components and overlaying broken stick distributions
 bstick(clust, ng = 10)
@@ -24,15 +23,15 @@ plot(clust, hang=-1 )
 
 
 #chclust function for Constrained hierarchical clustering method, using conslink method
-clust <- chclust(diss, method = "conslink")
+clust <- chclust(dmat, method = "conslink")
 
 #plotting variances of ordination axes/components
-plot(clust, hang=-1 )
+#plot(clust, hang=-1 )
 
 
-hc = hclust(d = diss, method = 'ward.D')
+hc = hclust(d = dmat, method = 'ward.D')
 y_hc = cutree(hc,6)
-diss=as.matrix(diss)
+diss=as.matrix(dmat)
 
 #clusplot(diss, y_hc, lines = 0, color = TRUE)
 
