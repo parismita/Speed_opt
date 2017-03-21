@@ -11,66 +11,71 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Comparision between rioja and adjClustBand_heap
 
-From the Merge Data Table and Dendrogram of rioja and adjClustBand_heap
+From the Merge Data Table and Dendrogram of rioja and adjClustBand_heap, We compare the clustering values.
 
-Rioja Data Table
+
+Rioja Data Table considering distance matrix (dissimilarity matrix) as the same given in the file dissimilarity2.txt.
 
 ```{r echo=FALSE, out.width='100%'}
 knitr::include_graphics('~/cHAC/rioja_mergedata.png')
 ```
 
-From the table we can say that the (30,31) merges at height 0.31, (96,97) at 0.6 and so on.
-
-adjClustBand_heap Data Table
-
-```{r echo=FALSE, out.width='100%'}
-knitr::include_graphics('~/cHAC/adjClustBand_heap.png')
-```
-
-From the table we can say that the (118,119) merges at height 0.31, (131,132) at 0.6 and so on.
-
-In both the functions we use Ward's method still the cluster output is different because the Distance metric in adjClustBand_heap is calculated considering a section of rectangle of the matrix. And that is minimised.
-
-But in rioja Directly Euclidian distance of the clusters is calculated.
+From the table we can say that the (30,31) merges at height 0.01, (81,82) at 0.02 and so on.
 
 
-
-Rioja Dendrogram
-
-```{r echo=FALSE, out.width='100%'}
-knitr::include_graphics('~/cHAC/riojaplot.png')
-```
-
-adjClustBand_heap Dendrogram for h = 1
-
-```{r echo=FALSE, out.width='100%'}
-knitr::include_graphics('~/cHAC/ward.png')
-```
-
-adjClustBand_heap Dendrogram for h = 10
-
-```{r echo=FALSE, out.width='100%'}
-knitr::include_graphics('~/cHAC/ward2.png')
-```
-
-adjClustBand_heap Dendrogram for h = 15
-
-```{r echo=FALSE, out.width='100%'}
-knitr::include_graphics('~/cHAC/ward3.png')
-```
-
-adjClustBand_heap Dendrogram for h = 25
-
-```{r echo=FALSE, out.width='100%'}
-knitr::include_graphics('~/cHAC/ward4.png')
-```
-
-adjClustBand_heap Dendrogram for h = 45
+If we consider the dissimilarity matrix such that it is 2-2*s', where s' is scaled similarity matrix. We get
 
 ```{r echo=FALSE, out.width='100%'}
 knitr::include_graphics('~/cHAC/ward5.png')
 ```
 
-We can say that as the width of diagonal increases, we see a bottomup fashion of clustering.
-Hence we can say that most of the importance clustering information is found near the diagonal.
 
+```{r echo=FALSE, out.width='100%'}
+knitr::include_graphics('~/cHAC/adjClustBand_heap.png')
+```
+
+adjClustBand_heap Data Table with maximum band similarity as shown above.
+
+From the table we can say that the merge data of both the functions are same when we take dissimilarity matrix as 2-2*s' and maximum band of similarity matrix for adjBandClust_heap
+
+
+The Dendrogram obtained from rioja package, as we consider the dissimilarity matrix as the same given in the file dissimilarity2.txt.
+
+```{r echo=FALSE, out.width='100%'}
+knitr::include_graphics('~/cHAC/riojaplot.png')
+```
+Rioja Dendrogram
+
+
+```{r echo=FALSE, out.width='100%'}
+knitr::include_graphics('~/cHAC/ward.png')
+```
+
+adjClustBand_heap Dendrogram for h = 5
+
+
+
+```{r echo=FALSE, out.width='100%'}
+knitr::include_graphics('~/cHAC/ward2.png')
+```
+
+adjClustBand_heap Dendrogram for h = 20
+
+```{r echo=FALSE, out.width='100%'}
+knitr::include_graphics('~/cHAC/ward3.png')
+```
+
+adjClustBand_heap Dendrogram for h = maximum height of the matrix
+
+
+```{r echo=FALSE, out.width='100%'}
+knitr::include_graphics('~/cHAC/ward4.png')
+```
+
+Rioja Dendrogram for dissimilarity as 2-2*s'
+
+
+By manipulating the similarity matrix such that s'' = 2-2*s' we see that the rioja  gives the same plot as adjClustBand_heap when full band is considered.
+
+After normalising the matrix such that the diagonal elements are 1, the Cluster Merging details that are comming are almost similar as of rioja cluster merge data.
+Hence we can conclude that the adjClustBand_heap gives same result as that of rioja thus proving its correctness and uses a more optimised algorithm.
