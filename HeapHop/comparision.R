@@ -19,7 +19,7 @@ View(head(cbind(clust$merge ,height = clust$height)))
 h<-5
 fit <- chaclust(s_scaled,h,f = 1)
 plot(fit)
-View(head(cbind(fit$merge ,gain = fit$gains , height = clust$height)))
+View(head(cbind(fit$merge ,gain = fit$gains , height = fit$height)))
 
 
 # hclust object using adjClustBand_heap function
@@ -28,7 +28,7 @@ View(head(cbind(fit$merge ,gain = fit$gains , height = clust$height)))
 h<-20
 fit <- chaclust(s_scaled,h,f = 1)
 plot(fit)
-View(head(cbind(fit$merge ,gain = fit$gains , height = clust$height)))
+View(head(cbind(fit$merge ,gain = fit$gains , height = fit$height)))
 
 
 # hclust object using adjClustBand_heap function
@@ -37,7 +37,7 @@ View(head(cbind(fit$merge ,gain = fit$gains , height = clust$height)))
 h<- ncol(s_scaled)
 fit <- chaclust(s_scaled,h,f = 1)
 plot(fit)
-View(head(cbind(fit$merge ,gain = fit$gains , height = clust$height)))
+View(head(cbind(fit$merge ,gain = fit$gains , height = fit$height)))
 
 #Recalculating the similarity matrix as s_re = 2-2*s' and rechecking the rioja cluster value
 s_re <- 2 - 2*s_scaled
