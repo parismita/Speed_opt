@@ -10,63 +10,110 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## Single Linkage Criterion
-In Single Linlage Criterion of Agglomerative Hierarchical clustering, The distance between the elements of each cluster is minimised. As the Naive single linkage clustering has a worst case time complexity of O(N^3). It becomes useless for large data which are frequency used in the field of bioinformatics
+In Single Linlage Criterion of Agglomerative Hierarchical clustering, The distance between the elements of each cluster is minimised. As the Naive single linkage clustering has a worst case time complexity of O(N^3). It becomes useless for large data which are frequency used in the field of bioinformatics. 
 
-Hence Nearest-neighbor chain algorithm is being used here
+Here by restricting the data to h-band similarity matrix and using min-heap we reduce the time complexity to O(plogp + ph)
 
-## Nearest-neighbor chain algorithm
-In the theory of cluster analysis, the nearest-neighbor chain algorithm is an algorithm that can speed up several methods for agglomerative hierarchical clustering. And Single Linkage Clustering is one of them. With this we have taken an input a band similarity matrix of size ph, and combines pre-calculation of certain partial sums of similarities with an efficient storage of the successive merges in a binary heap, hence reducing the time complexity to O(plog(p) + h)
+#The Input
+The input is taken as Cosine Similarity matrix which is then converted into Distance Matrix in file adjClustBand_heap.R
+
+```
+matL <- .toMatLeft(xt, p, h)     ## a matrix p x h (with zeros at the bottom) of the LD values
+dissim <- as.numeric(1 - matL)    ## cosine distance metric
+```
+
+#The Output
+The output is a hclust object with details of gain, height, label, merge data, order etc.
+
+```
+tree <- list(traceW=traceW,
+                 gains=gains,
+                 merge = res,
+                 height = height,
+                 seqdist = height,
+                 order = 1:p,
+                 labels = paste("",1:p),
+                 method = "adjclust-heaps",
+                 call = match.call(),
+                 dist.method = attr(D, "method"))
+    class(tree) <- "hclust"
+```
 
 ## The Algorithm
-* Initialize the set of active clusters to consist of n one-point clusters, one for each input point.
-
-* Let S be a stack data structure, initially empty, the elements of which will be active clusters.
-
-* While there is more than one cluster in the set of clusters:
-
-* If S is empty, choose an active cluster arbitrarily and push it onto S.
-
-* Let C be the active cluster on the top of S. Compute the distances from C to all other clusters, and let D be the nearest other cluster.
-
-* If D is already in S, it must be the immediate predecessor of C. Pop both clusters from S and merge them.
-
-* Otherwise, if D is not already in S, push it onto S.
-
-Here The cost function used is the minimum distance between the nearest cluster element.
 
 ```{r echo=FALSE, out.width='100%'}
-knitr::include_graphics('~/cHAC/point.png')
+knitr::include_graphics('~/cHAC/algo1.png')
 ```
 
-As single linkage criterion can be implemented by using the Lance and William Algorithm
-```{r echo=FALSE, out.width='100%'}
-knitr::include_graphics('~/cHAC/william.png')
-```
-
-```{r echo=FALSE, out.width='100%'}
-knitr::include_graphics('~/cHAC/lance.png')
-```
-
-Hence by tuning the cost function of FusionedClasses.cpp
+## Computation of Minimum Distance via SLINK
 
 ```
-FusionCost = 0.5 * (MyValue()  - abs(MyValue() - MyMatrix->Value(NextAvailableIndex,
-    NextAvailableIndex)) + MyMatrix->Value(NextAvailableIndex, NextAvailableIndex));
+  for(int i=mini;i<=maxi;i++)
+  {
+    for(int j=minj-i;(j<=maxj-i)&&(j<=h);j++)
+    {   
+    res = MIN(DIS(i,j,p),res);
+    }
+}
 ```
-## The Output
-```
-h<-5
-resP <- chaclust(s,h)
-View(head(t(resP),10))
-```
+Where the number of items in cluster I is mini - maxi and cluster J is minj - maxj.
+In loop-2 the constrain that the difference between index of item must not exceed h is applied.
+
+## Comparision with Rioja
+Taking parameter h as the width of the matrix we get similar results as chclust function of rioja with conslink method.
+
+* The output by rioja chclust (conslink)
 
 ```{r echo=FALSE, out.width='100%'}
-knitr::include_graphics('~/cHAC/output.png')
+knitr::include_graphics('~/cHAC/output1.png')
 ```
+
+* The output by adjClustBand_heap
+
+```{r echo=FALSE, out.width='100%'}
+knitr::include_graphics('~/cHAC/output2.png')
+```
+
+Comparing the Merge Data of both the functions we get same values initially and it deviates a little at higher heights.
+
+* The Merge Data by chclust (conslink)
+
+```
+    #Recalculating the similarity matrix as s_re = 2-2*s' and rechecking the rioja cluster value
+    s_re <- 2 - 2*s_scaled
+    
+    #rioja hclust object
+    diss <- as.dist(s_re)
+    clust <- chclust(diss, method = "conslink")
+    View(cbind(clust$merge ,height = clust$height))
+```
+
+```{r echo=FALSE, out.width='100%'}
+knitr::include_graphics('~/cHAC/r.png')
+```
+
+* The Merge Data by adjClustBand_heap
+
+```
+    # hclust object using adjClustBand_heap function
+    # where s_scaled is the similatrity matrix
+    h<- ncol(s_scaled)
+    fit <- chaclust(s_scaled,h,f = 1)
+    plot(fit)
+    View(cbind(fit$merge ,height = fit$height))
+```
+
+```{r echo=FALSE, out.width='100%'}
+knitr::include_graphics('~/cHAC/a.png')
+```
+
+Though the Height is different, the overall height of dendrogran is almost same around ~0.4 and the merge data of clusters are same as shown in the data table.
 
 --------------------------------------------------------------------------------------------
+
 References:
-* https://users.cs.duke.edu/~edels/Papers/1984-J-05-HierarchicalClustering.pdf
-* http://www.lx.it.pt/~afred/tutorials/B_Clustering_Algorithms.pdf
-* http://orion.lcg.ufrj.br/Dr.Dobbs/books/book5/chap16.htm
-* https://en.wikipedia.org/wiki/Nearest-neighbor_chain_algorithm
+
+* https://tel.archives-ouvertes.fr/tel-01288568/en
+
+* http://www.geeksforgeeks.org/greedy-algorithms-set-5-prims-minimum-spanning-tree-mst-2/
+
