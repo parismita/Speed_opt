@@ -15,7 +15,6 @@ The pdf stating all details can be found here: [Similarity](https://github.com/p
 
 ## Hard test 
 The function adjClustBand_heap in the package adjclust is modified from ward's criterion to single linkage criterion giving single linkage clustering of time complexity O(plogp + ph).
-
 As Distance matrix is unsorted hence we can't use divide and conquore to reduce the time complexity furthermore from O(ph).
 
 The function descriptions and the edited files are inside the folder cpp_code. 
