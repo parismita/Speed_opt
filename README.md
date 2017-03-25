@@ -14,7 +14,8 @@ The Similarity Matrix formation, the Function and comparision with rioja can be 
 The pdf stating all details can be found here: [Similarity](https://github.com/parismita/gsoc-2017/blob/master/HeapHop/similarity.pdf)| [Comparision](https://github.com/parismita/gsoc-2017/blob/master/HeapHop/comp.pdf)
 
 ## Hard test 
-The function HeapHop in the package adjclust is modified from ward's criterion to single linkage criterion giving single linkage clustering of time complexity O(N^2)
+The function adjClustBand_heap in the package adjclust is modified from ward's criterion to single linkage criterion giving single linkage clustering of time complexity O(plogp + ph)
+As Distance matrix is unsorted hence we can't use divide and conquore to reduce the time complexity furthermore from O(ph).
 
 The function descriptions and the edited files are inside the folder cpp_code. 
 The pdf stating all details can be found here: [SingleLinkage](https://github.com/parismita/gsoc-2017/blob/master/cpp_codes/singleLinkage.pdf)| [FunctionDescription](https://github.com/parismita/gsoc-2017/blob/master/cpp_codes/FunctionDescription.pdf)
