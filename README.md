@@ -18,6 +18,6 @@ The function adjClustBand_heap in the package adjclust is modified from ward's c
 As Distance matrix is unsorted hence we can't use divide and conquore to reduce the time complexity furthermore from O(ph).
 
 The function descriptions and the edited files are inside the folder cpp_code. 
-The pdf stating all details can be found here: [SingleLinkage](https://github.com/parismita/gsoc-2017/blob/master/cpp_codes/singleLinkage.pdf)| [FunctionDescription of adjClustBand_heap](https://github.com/parismita/gsoc-2017/blob/master/cpp_codes/FunctionDescription.pdf)
+The pdf stating all details can be found here: [SingleLinkage](https://github.com/parismita/gsoc-2017/blob/master/cpp_codes/singleLinkage.pdf)| [FunctionDescription of adjClustBand_heap](https://github.com/parismita/gsoc-2017/blob/master/cpp_codes/Func_desp_adjclustbandheap.pdf)
 
 In adjclust, the mainFunctions.c and adjClustBand_heap.R is updated : [here](https://github.com/pneuvial/adjclust/compare/master...parismita:master)
