@@ -1,7 +1,7 @@
 # Constrained Hierarchical Agglomerative Clustering
 
 ## Easy test 
-The implemented and the given dataset both clusters are obtained using rioja, It had been seen that for non-euclidian dataset it doesn't give expected outcome.
+The implemented and the given dataset both clusters are obtained using rioja, It had been seen that with non-euclidian distance metric the chclust function doesn't give expected results.
 
 The code can be found inside folder rioja_easy. 
 The pdf stating all details can be found here: [rioja](https://github.com/parismita/gsoc-2017/blob/master/rioja_easy/easy.pdf)
