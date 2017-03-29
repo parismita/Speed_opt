@@ -2,18 +2,13 @@
 
 #reading dataset from txt file
 data <- read.table("/home/parismita/cHAC/dissimilarity.txt")
-#converting to numeric list
-n<-as.numeric(unlist(data))
-#converting to dissimilarity matrix
-dmat<-matrix(c(n),nrow = 77,ncol = 77)
-#View(dmat)
 
 library(rioja)
 library(cluster)
 
 #we are given with dissimilarity matrix with id not euclidean distance metric.
 #changing to distance class
-dmat <- as.dist(dmat)
+dmat <- as.dist(data)
 #chclust function for Constrained hierarchical clustering method, using consiss method
 clust <- chclust(dmat)
 
