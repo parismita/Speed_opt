@@ -17,11 +17,7 @@ We start with conveting the dataset given in format of .txt to distance class.
 ```
 #reading dataset from txt file
 data <- read.table("/home/parismita/dissimilarity.txt")
-#converting to numeric list
-n<-as.numeric(unlist(data))
-#converting to dissimilarity matrix
-dmat<-matrix(c(n),nrow = 77,ncol = 77)
-dmat<-as.dist(dmat)
+dmat<-as.dist(data)
 ```
 Computing the clusters using chclust.
 We have two methonds in rioja package
