@@ -60,7 +60,8 @@ Hence this shows the Hierarchical clustering using our own data.
 
 ## Problems with Non-Euclidian Data
 
-For ward's linkage: It can yield non-increasing merges if the dissimilarity is non-euclidean. 
+With the given data, problems found due to non-euclidean metric are:
+
+For ward's linkage: It can yield non-increasing merges if the dissimilarity is non-euclidean.
 
 For Single linkage: The data have no varience hence cant seperate into clusters as all clusters are at same height so even if we cut the dendrogram to obtain clusters, it gives same number of elements
-
