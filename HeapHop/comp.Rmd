@@ -11,10 +11,16 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Comparision between rioja and adjClustBand_heap
 
-From the Merge Data Table and Dendrogram of rioja and adjClustBand_heap, We compare the clustering values.
+To check the validity of the cWard's Heap algorithm that is applied for the function adjClustBand_heap, we conpare the clustering results of adjClustBand_heap with the results of rioja chclust function.
 
+We compare whether the merging of clusters happen at same height and for same index for both the functions. Hence analysing below plots and table data we verify the correctness of adjClustBand_heap.
 
-Rioja Data Table considering distance matrix (dissimilarity matrix) as the same given in the file dissimilarity2.txt.
+##### Comparing the Merge Data Table of rioja and adjClustBand_heap.
+
+In rioja, the function chclust takes input as dissimilarity matrix and gives 'hclust' object as output. The 'hclust' object has attributes such as the indices of the clusters that are merged and the height at which clusters are merged.
+
+Considering the dissimilarity matrix as the same given in the file dissimilarity2.txt.
+We get the merge data as:
 
 ```{r echo=FALSE, out.width='100%'}
 knitr::include_graphics('~/cHAC/rioja_mergedata.png')
@@ -22,30 +28,27 @@ knitr::include_graphics('~/cHAC/rioja_mergedata.png')
 
 From the table we can say that the (30,31) merges at height 0.01, (81,82) at 0.02 and so on.
 
+Considering function adjClustBand_heap, it takes similarity matrix as input such that the diagonal elements are 1 and gives 'hclust' object as output. Hence it also has same attributes as rioja chclust function. Thus we can compare the values of Merge Data.
 
-If we consider the dissimilarity matrix such that it is 2-2*s', where s' is scaled similarity matrix. We get
-
-```{r echo=FALSE, out.width='100%'}
-knitr::include_graphics('~/cHAC/ward5.png')
-```
-
+adjClustBand_heap Data Table with maximum band similarity as shown below:
 
 ```{r echo=FALSE, out.width='100%'}
 knitr::include_graphics('~/cHAC/adjClustBand_heap.png')
 ```
 
-adjClustBand_heap Data Table with maximum band similarity as shown above.
+We realise that the merge data are not same, the reason is that we converted the dissimilarity to similarity using a different approach than rioja does. Hence the output we get are different.
 
-From the table we can say that the merge data of both the functions are same when we take dissimilarity matrix as 2-2*s' and maximum band of similarity matrix for adjBandClust_heap
-
-
-The Dendrogram obtained from rioja package, as we consider the dissimilarity matrix as the same given in the file dissimilarity2.txt.
+But if we consider the dissimilarity matrix such that it is 2-2*s', where s' is scaled similarity matrix (with diagonal as 1). We get:
 
 ```{r echo=FALSE, out.width='100%'}
-knitr::include_graphics('~/cHAC/riojaplot.png')
+knitr::include_graphics('~/cHAC/ward5.png')
 ```
-Rioja Dendrogram
 
+From the table we can say that the merge data of both chclust and adjClustBand_heap function are same when we take dissimilarity matrix as 2-2*s' and maximum band of similarity matrix for adjBandClust_heap.
+
+##### Comparing the dendrograms formed by chclust and adjClustBand_heap
+
+Considering adjClustBand_heap dengrograms for various values of the band constrain h, so that we can compare the difference on what happens when we take only values which are in located in the neighbourhood of the diagonal.
 
 ```{r echo=FALSE, out.width='100%'}
 knitr::include_graphics('~/cHAC/ward.png')
@@ -67,15 +70,17 @@ knitr::include_graphics('~/cHAC/ward3.png')
 
 adjClustBand_heap Dendrogram for h = maximum height of the matrix
 
+We get to know from the dendrograms that smaller the h value is, more distinguisable clusters are formed at higher height. As we can see we get only 2 clusters from height 50 to 150 when there is no band constrain,ie, h is maximum.
+
+And larger the value of h, more similar it is to clusters formed by rioja.
+
+Considering dendrograms formed by chclust with dissimilarity as 2-2*s' :
 
 ```{r echo=FALSE, out.width='100%'}
 knitr::include_graphics('~/cHAC/ward4.png')
 ```
 
-Rioja Dendrogram for dissimilarity as 2-2*s'
-
-
-By manipulating the similarity matrix such that s'' = 2-2*s' we see that the rioja  gives the same plot as adjClustBand_heap when full band is considered.
+We can see that we get exact same result from rioja and adjClustBand_heap when full band is considered.
 
 After normalising the matrix such that the diagonal elements are 1, the Cluster Merging details that are comming are almost similar as of rioja cluster merge data.
 Hence we can conclude that the adjClustBand_heap gives same result as that of rioja thus proving its correctness and uses a more optimised algorithm.
