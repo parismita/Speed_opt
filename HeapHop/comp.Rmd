@@ -70,9 +70,7 @@ knitr::include_graphics('~/cHAC/ward3.png')
 
 adjClustBand_heap Dendrogram for h = maximum height of the matrix
 
-We get to know from the dendrograms that smaller the h value is, more distinguisable clusters are formed at higher height. As we can see we get only 2 clusters from height 50 to 150 when there is no band constrain,ie, h is maximum.
-
-And larger the value of h, more similar it is to clusters formed by rioja.
+We get to know from the dendrograms that larger the value of h, more similar it is to clusters formed by rioja.
 
 Considering dendrograms formed by chclust with dissimilarity as 2-2*s' :
 
