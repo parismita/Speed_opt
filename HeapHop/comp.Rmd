@@ -80,5 +80,16 @@ knitr::include_graphics('~/cHAC/ward4.png')
 
 We can see that we get exact same result from rioja and adjClustBand_heap when full band is considered.
 
-After normalising the matrix such that the diagonal elements are 1, the Cluster Merging details that are comming are almost similar as of rioja cluster merge data.
-Hence we can conclude that the adjClustBand_heap gives same result as that of rioja thus proving its correctness and uses a more optimised algorithm.
+However there is slight difference between the heights of clusters that are merged via chclust and adjBancClust_heap. To show the relation between the heights we see the scatter plot between there heights:
+
+```{r echo=FALSE, out.width='100%'}
+knitr::include_graphics('~/cHAC/comp.png')
+```
+
+From the plot , as we can see its almost a straight line till a certain height, thus the adjBancClust_heap single linkage method is working fine and the height obtained is proportional to that obtained by rioja.
+
+But after a certain height ie, 3 for adjBancClust_heap and 0.4 for chclust. The chclust function of rioja approximates all height above 0.4 to be at 0.4, thus we get a constant slope plot as seen.
+
+In adjClustBand_heap that approsimation is not done hence we get a bit different result than rioja as seen in dendrograms formed.
+
+#####Hence we can conclude that the adjClustBand_heap gives same result as that of rioja thus proving its correctness and uses a more optimised algorithm.
