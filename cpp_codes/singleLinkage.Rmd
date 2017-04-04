@@ -106,8 +106,19 @@ knitr::include_graphics('~/cHAC/r.png')
 ```{r echo=FALSE, out.width='100%'}
 knitr::include_graphics('~/cHAC/a.png')
 ```
+However there is slight difference between the heights of clusters that are merged via chclust and adjBancClust_heap. To show the relation between the heights we see the scatter plot between there heights:
 
-Though the Height is different, the overall height of dendrogran is almost same around ~0.4 and the merge data of clusters are same as shown in the data table.
+```{r echo=FALSE, out.width='100%'}
+knitr::include_graphics('~/cHAC/comp.png')
+```
+
+From the plot , as we can see its almost a straight line till a certain height, thus the adjBancClust_heap single linkage method is working fine and the height obtained is proportional to that obtained by rioja.
+
+But after a certain height ie, 3 for adjBancClust_heap and 0.4 for chclust. The chclust function of rioja approximates all height above 0.4 to be at 0.4, thus we get a constant slope plot as seen.
+
+In adjClustBand_heap that approsimation is not done hence we get a bit different result than rioja as seen in dendrograms formed.
+
+##### Hence we can conclude that the applied single linkage method gives same result as that of rioja thus proving its correctness.
 
 --------------------------------------------------------------------------------------------
 
