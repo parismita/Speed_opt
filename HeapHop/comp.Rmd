@@ -92,4 +92,4 @@ But after a certain height ie, 3 for adjBancClust_heap and 0.4 for chclust. The 
 
 In adjClustBand_heap that approsimation is not done hence we get a bit different result than rioja as seen in dendrograms formed.
 
-#####Hence we can conclude that the adjClustBand_heap gives same result as that of rioja thus proving its correctness and uses a more optimised algorithm.
+##### Hence we can conclude that the adjClustBand_heap gives same result as that of rioja thus proving its correctness and uses a more optimised algorithm.
